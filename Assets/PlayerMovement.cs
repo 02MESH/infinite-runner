@@ -8,10 +8,26 @@ public class NewBehaviourScript : MonoBehaviour
     int xPosIndex = 1;
     public float speed = 5f;
     public float floorHeight;
+
+    private Rigidbody rb;
+
+    public Vector3 jump;
+    public float jumpForce = 2.8f;
+    bool isGrounded = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        jump = new Vector3(0.0f, 2.0f, 0.0f);
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "ground")
+        {
+            isGrounded = true;
+        }
     }
 
     // Update is called once per frame
@@ -23,6 +39,14 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             MoveRight();
+        }
+        if (isGrounded)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+                isGrounded = false;
+            }
         }
         //+= transform.forward * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(xPos[xPosIndex], floorHeight, transform.position.z + 1), Time.deltaTime * speed);
@@ -42,4 +66,5 @@ public class NewBehaviourScript : MonoBehaviour
             xPosIndex = xPos.Length - 1;
         }
     }
+  
 }
