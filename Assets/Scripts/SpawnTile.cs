@@ -5,13 +5,15 @@ using UnityEngine;
 public class SpawnTile : MonoBehaviour
 {
     private GameObject Tile;
-    private float offset = 10.0f;
+    private float offset = 14.0f;
+    private bool firstTile = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        Tile = GameObject.Find("Tile");
+        Tile = GameObject.FindWithTag("tile-original");
     }
-
 
     void OnTriggerEnter(Collider other)
     {
