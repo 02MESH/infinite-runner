@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //array for player movement
     public float[] xPos;
     int xPosIndex = 1;
     public float speed = 5f;
@@ -11,27 +12,33 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
 
+    //jump variables
     public Vector3 jump;
     public float jumpForce = 2.8f;
     bool isGrounded = false;
 
+    //player inventory
+    private PlayerInventory playerInventory;
+
+    //score variables 
+    private float score = 0f;
+    //how much score increases each second
+    float scoreIncreaseRate = 10f; // Adjust as needed
+    
+    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
+        
+        // Get the PlayerInventory component when the game starts
+        playerInventory = GetComponent<PlayerInventory>();
     }
 
     //when trigger collision happens
     void OnTriggerEnter(Collider other)
     {
-        //if the other object entering our trigger zone
-        //has a tag called "Pick Up"
-        //if (other.gameObject.CompareTag("Pick Up"))
-        //{
-        //deactivat the other object
-        //other.gameObject.SetActive(false);
-        //}
         
         //calls the collectible script
         Collectible collectible = other.GetComponent<Collectible>();
@@ -41,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
                 // Call the ApplyEffect method for the specific collectible
                 collectible.ApplyEffect(transform);
             }
-       
+
     }
 
     // Actually applying jumpboost to the player from the method in the jumpboost collectible script
@@ -93,6 +100,39 @@ public class PlayerMovement : MonoBehaviour
         }
         //+= transform.forward * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(xPos[xPosIndex], floorHeight, transform.position.z + 1), Time.deltaTime * speed);
+
+       
+        UpdateScore();
+        
+    }
+
+    void UpdateScore() {
+        
+        // Increase the score over time
+        score += Time.deltaTime * scoreIncreaseRate;
+
+        // Optionally, you can display or use the score in other ways
+        Debug.Log("Score: " + Mathf.Round(score));
+    }
+
+    public void ApplyScoreMultiplier(float multiplier, float duration)
+    {
+        StartCoroutine(ScoreMultiplierCoroutine(multiplier, duration));
+    }
+
+    // Coroutine to handle the score multiplier effect
+    IEnumerator ScoreMultiplierCoroutine(float multiplier, float duration)
+    {
+        float originalScoreIncreaseRate = scoreIncreaseRate;
+
+        // Multiply the score increase rate by the multiplier
+        scoreIncreaseRate *= multiplier;
+
+        // Wait for the specified duration
+        yield return new WaitForSeconds(duration);
+
+        // Reset the score increase rate to its original value
+        scoreIncreaseRate = originalScoreIncreaseRate;
     }
 
     void MoveLeft() {
