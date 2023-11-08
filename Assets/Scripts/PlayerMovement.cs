@@ -108,7 +108,6 @@ public class PlayerMovement : MonoBehaviour
             speed += 0.1f * Time.deltaTime;
         }
         
-       
         UpdateScore();
         
     }
