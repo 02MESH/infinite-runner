@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pick Up
   - ground
+  - tile-original
   layers:
   - Default
   - TransparentFX
