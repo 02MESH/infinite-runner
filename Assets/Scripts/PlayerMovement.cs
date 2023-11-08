@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     int xPosIndex = 1;
     public float speed = 5f;
     public float floorHeight;
+    public float maxSpeed; 
 
     private Rigidbody rb;
 
@@ -100,7 +101,13 @@ public class PlayerMovement : MonoBehaviour
         }
         //+= transform.forward * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(xPos[xPosIndex], floorHeight, transform.position.z + 1), Time.deltaTime * speed);
-
+        
+        // increment speed each second
+        if(speed < maxSpeed)
+        {
+            speed += 0.1f * Time.deltaTime;
+        }
+        
        
         UpdateScore();
         
