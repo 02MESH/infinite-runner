@@ -6,6 +6,7 @@ using UnityEngine;
 public class LightingManager : MonoBehaviour
 {
     //references
+    // just so i can see what each stage of the lighting looks like in editor 
     [SerializeField] private Light DirectionalLight;
     [SerializeField] private LightingPreset Preset;
     
@@ -45,7 +46,7 @@ public class LightingManager : MonoBehaviour
 
 
     }
-    // just so i can see what each stage of the lighting looks like in editor 
+    //sets lighting to what the sun is in the scene
     private void OnValidate() {
 
         if (DirectionalLight != null) {

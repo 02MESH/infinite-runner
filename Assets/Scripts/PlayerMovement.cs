@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     //jump variables
     public Vector3 jump;
     public float jumpForce = 2.8f;
-    bool isGrounded = false;
+    bool isGrounded = true;
 
     //player inventory
     private PlayerInventory playerInventory;
@@ -25,14 +25,15 @@ public class PlayerMovement : MonoBehaviour
     private float score = 0f;
     //how much score increases each second
     float scoreIncreaseRate = 10f; // Adjust as needed
-    
-    
+
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
-        
+        animator = GetComponentInChildren<Animator>(); //not initialised properly
         // Get the PlayerInventory component when the game starts
         playerInventory = GetComponent<PlayerInventory>();
     }
@@ -78,12 +79,16 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "ground")
         {
             isGrounded = true;
+            animator.SetBool("isJumping", false); //causing error cannot find Animator
         }
     }
+
+ 
 
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.A)) {
             MoveLeft();
         }
@@ -97,8 +102,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(jump * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
+                animator.SetTrigger("isJumping");
             }
+            
         }
+        if (Input.GetKeyDown(KeyCode.S)) {
+
+        }
+        //animator.SetBool("isRunning", xPosIndex != 1);
         //+= transform.forward * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(xPos[xPosIndex], floorHeight, transform.position.z + 1), Time.deltaTime * speed);
         
