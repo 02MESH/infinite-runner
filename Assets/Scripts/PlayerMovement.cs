@@ -9,14 +9,17 @@ public class PlayerMovement : MonoBehaviour
     int xPosIndex = 1;
     public float speed = 5f;
     public float floorHeight;
-    public float maxSpeed; 
+    public float maxSpeed;
 
-    private Rigidbody rb;
+    //private Rigidbody rb; //trying to remove this 
+
+    private CharacterController controller;
 
     //jump variables
-    public Vector3 jump;
-    public float jumpForce = 2.8f;
-    bool isGrounded = true;
+    public Vector3 direction;
+    public float jumpForce = 10f;
+    public float Gravity = -20;
+    //bool isGrounded = true;
 
     //player inventory
     private PlayerInventory playerInventory;
@@ -31,8 +34,9 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
+        controller = GetComponent<CharacterController>();
+        // rb = GetComponent<Rigidbody>(); //trying to remove this 
+        //direction = new Vector3(0.0f, 2.0f, 0.0f);
         animator = GetComponentInChildren<Animator>(); //not initialised properly
         // Get the PlayerInventory component when the game starts
         playerInventory = GetComponent<PlayerInventory>();
@@ -78,17 +82,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "ground")
         {
-            isGrounded = true;
+            //isGrounded = true;
             animator.SetBool("isJumping", false); //causing error cannot find Animator
         }
     }
 
- 
+
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("isGrounded: " + controller.isGrounded);
+        direction.y += Gravity * Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.A)) {
             MoveLeft();
         }
@@ -96,25 +101,35 @@ public class PlayerMovement : MonoBehaviour
         {
             MoveRight();
         }
-        if (isGrounded)
+     // if (controller.isGrounded)
+     //   {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-                isGrounded = false;
-                animator.SetTrigger("isJumping");
-            }
-            
-        }
-        if (Input.GetKeyDown(KeyCode.S)) {
+            //rb.AddForce(jump * jumpForce, ForceMode.Impulse); //trying to remove this 
+            Jump();
+            StartCoroutine(Jumps());
+            //isGrounded = false;
 
+        }
+
+       //}
+        //else{
+
+        //}
+        if (Input.GetKeyDown(KeyCode.S)) {
+            StartCoroutine(Slide());
         }
         //animator.SetBool("isRunning", xPosIndex != 1);
         //+= transform.forward * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(xPos[xPosIndex], floorHeight, transform.position.z + 1), Time.deltaTime * speed);
+        //transform.position = Vector3.MoveTowards(transform.position, new Vector3(xPos[xPosIndex], floorHeight, transform.position.z + 1), Time.deltaTime * speed);
         
+        
+        // Move the character using the controller
+        controller.Move(direction * Time.deltaTime);
+        controller.Move(new Vector3(xPos[xPosIndex] - transform.position.x, 0, 1) * speed * Time.deltaTime);
+
         // increment speed each second
-        if(speed < maxSpeed)
+        if (speed < maxSpeed)
         {
             speed += 0.1f * Time.deltaTime;
         }
@@ -122,6 +137,12 @@ public class PlayerMovement : MonoBehaviour
         UpdateScore();
         
     }
+
+    private void Jump() {
+        direction.y = jumpForce;
+        animator.SetTrigger("isJumping");
+    }
+    
 
     void UpdateScore() {
         
@@ -150,6 +171,27 @@ public class PlayerMovement : MonoBehaviour
 
         // Reset the score increase rate to its original value
         scoreIncreaseRate = originalScoreIncreaseRate;
+    }
+
+    IEnumerator Slide() {
+        animator.SetBool("isSliding", true);
+        //changes height and center of collider to slide under objects
+        controller.center = new Vector3(0, 0.5f, 0);
+        controller.height = 1;
+        yield return new WaitForSeconds(1.3f);
+
+        //changes back to original height and centre of collider
+        controller.center = new Vector3(0, 1f, 0);
+        controller.height = 2;
+        animator.SetBool("isSliding", false);
+    }
+
+    IEnumerator Jumps()
+    {
+        animator.SetBool("isJumping", true);
+        yield return new WaitForSeconds(1.3f);
+
+        animator.SetBool("isJumping", false);
     }
 
     void MoveLeft() {
