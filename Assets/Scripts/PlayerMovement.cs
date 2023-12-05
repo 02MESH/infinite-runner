@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     float scoreIncreaseRate = 10f; // Adjust as needed
 
     private Animator animator;
+
+    public Text scoreText;
 
     // Start is called before the first frame update
     void Start()
@@ -92,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("isGrounded: " + controller.isGrounded);
+        //Debug.Log("isGrounded: " + controller.isGrounded);
         direction.y += Gravity * Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.A)) {
             MoveLeft();
@@ -150,7 +153,8 @@ public class PlayerMovement : MonoBehaviour
         score += Time.deltaTime * scoreIncreaseRate;
 
         // Optionally, you can display or use the score in other ways
-        Debug.Log("Score: " + Mathf.Round(score));
+        //Debug.Log("Score: " + Mathf.Round(score));
+        scoreText.text = "Score: " + Mathf.Round(score);
     }
 
     public void ApplyScoreMultiplier(float multiplier, float duration)

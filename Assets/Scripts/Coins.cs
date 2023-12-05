@@ -16,6 +16,8 @@ public class Coins : Collectible
         // Deactivate the collectible
         gameObject.SetActive(false);
     }
-
+    void Update() {
+        transform.Rotate(100 * Time.deltaTime, 0, 0);
+    }
 }
 
