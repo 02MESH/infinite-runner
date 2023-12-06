@@ -8,6 +8,7 @@ public class PlayerInventory : MonoBehaviour
     //player starts with 0 coins
     private int coins = 0;
     public Text coinsText;
+
     public void AddCoins(int amount)
     {
         coins += amount;
