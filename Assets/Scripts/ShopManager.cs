@@ -26,6 +26,7 @@ public class ShopManager : MonoBehaviour
 
         }
         charIndex = PlayerPrefs.GetInt("SelectedChar", 0);
+
         foreach (GameObject character in characterModels) {
             character.SetActive(false);
 

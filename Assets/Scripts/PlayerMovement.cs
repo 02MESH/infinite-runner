@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     public float floorHeight;
     public float maxSpeed;
+
 
     //private Rigidbody rb; //trying to remove this 
 
@@ -29,11 +31,12 @@ public class PlayerMovement : MonoBehaviour
     private float score = 0f;
     //how much score increases each second
     float scoreIncreaseRate = 10f; // Adjust as needed
+    private float highScore = 0f;
 
     private Animator animator;
 
     public Text scoreText;
-
+    public Text highScoreText;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>(); //not initialised properly
         // Get the PlayerInventory component when the game starts
         playerInventory = GetComponent<PlayerInventory>();
+
+        highScore = PlayerPrefs.GetFloat("HighScore", 0f);
     }
 
     //when trigger collision happens
@@ -138,6 +143,8 @@ public class PlayerMovement : MonoBehaviour
         }
         
         UpdateScore();
+
+
         
     }
 
@@ -146,7 +153,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("isJumping");
     }
     
-
     void UpdateScore() {
         
         // Increase the score over time
@@ -155,6 +161,28 @@ public class PlayerMovement : MonoBehaviour
         // Optionally, you can display or use the score in other ways
         //Debug.Log("Score: " + Mathf.Round(score));
         scoreText.text = "Score: " + Mathf.Round(score);
+
+        if (score > highScore)
+        {
+            highScore = score;
+            if (highScoreText != null)
+            {
+                highScoreText.text = "HighScore: " + Mathf.Round(highScore);
+            }
+        }
+    }
+
+    void SaveHighScore()
+    {
+        PlayerPrefs.SetFloat("HighScore", highScore);
+        PlayerPrefs.Save();
+    }
+
+    void GameOver()
+    {
+        
+        SaveHighScore();
+        
     }
 
     public void ApplyScoreMultiplier(float multiplier, float duration)

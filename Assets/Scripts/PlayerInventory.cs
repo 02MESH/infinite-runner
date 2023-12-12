@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerInventory : MonoBehaviour
 {
     //player starts with 0 coins
-    private int coins = 0;
+    private int coins = 100;
     public Text coinsText;
 
     private const string CoinsPrefsKey = "PlayerCoins";
