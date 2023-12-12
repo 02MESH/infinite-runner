@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeathCollider : MonoBehaviour
 {
-    private void OnTriggerEnter(Colider other) {
+    private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Player")) {
             Debug.Log("Player touched collider");
         }
