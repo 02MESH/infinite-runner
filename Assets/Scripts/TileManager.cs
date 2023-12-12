@@ -9,9 +9,10 @@ public class TileManager : MonoBehaviour
 
     private Transform playerTransform;
     private float spawnZ = 0.0f;
-    private float tileLength = 20.0f;
-    private int tilesOnScreen = 7;
-    private float safeZone = 40.0f;
+    private float tileLength = 60.0f;
+    private int tilesOnScreen = 3;
+    private float safeZone = 120.0f;
+    private int lastPrefabIndex = 0;
 
     //List to store tiles which will be deleted later.
     private List<GameObject> activeTiles;
@@ -37,7 +38,7 @@ public class TileManager : MonoBehaviour
     private void spawnTile(int prefabIndex = -1) {
         spawnZ += tileLength;
         GameObject go;
-        go = Instantiate(tilePrefabs[0]) as GameObject;
+        go = Instantiate(tilePrefabs[RandomPrefabIndex()]) as GameObject;
         go.transform.SetParent(transform);
         go.transform.position = Vector3.forward * spawnZ;
         activeTiles.Add(go);
@@ -46,5 +47,15 @@ public class TileManager : MonoBehaviour
     private void deleteTile() {
         Destroy(activeTiles[0]);
         activeTiles.RemoveAt(0);
+    }
+
+    private int RandomPrefabIndex() {
+        if(tilePrefabs.Length <= 1) return 0;
+        int randomIndex = lastPrefabIndex;
+        while(randomIndex == lastPrefabIndex) {
+            randomIndex = Random.Range(0, tilePrefabs.Length);
+        }
+        lastPrefabIndex = randomIndex;
+        return randomIndex;
     }
 }

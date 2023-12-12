@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     //jump variables
     public Vector3 direction;
-    public float jumpForce = 10f;
-    public float Gravity = -20;
+    public float jumpForce = 10.0f;
+    public float Gravity = -20.0f;
     //bool isGrounded = true;
 
     //player inventory
@@ -48,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
     //when trigger collision happens
     void OnTriggerEnter(Collider other)
     {
-        
         //calls the collectible script
         Collectible collectible = other.GetComponent<Collectible>();
 
