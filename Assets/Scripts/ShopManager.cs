@@ -14,7 +14,17 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-        foreach(CharacterBp character in charsBp){
+
+        PlayerInventory playerInventory = PlayerInventory.Instance;
+
+        // Load the player's coins
+        playerInventory.LoadCoins();
+
+        // Update the UI to display the current coins
+        playerInventory.UpdateCoinsUI();
+
+
+        foreach (CharacterBp character in charsBp){
             if (character.price == 0)
             {
                 character.isUnlocked = true;
@@ -31,9 +41,7 @@ public class ShopManager : MonoBehaviour
             character.SetActive(false);
 
             characterModels[charIndex].SetActive(true);
-        }
-
-        PlayerInventory.Instance.LoadCoins();
+        }       
     }
 
     // Update is called once per frame

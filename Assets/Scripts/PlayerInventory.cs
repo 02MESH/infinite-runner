@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerInventory : MonoBehaviour
 {
     //player starts with 0 coins
-    private int coins = 100;
+    private int coins = 0;
     public Text coinsText;
 
     private const string CoinsPrefsKey = "PlayerCoins";
@@ -40,7 +40,7 @@ public class PlayerInventory : MonoBehaviour
         UpdateCoinsUI();
     }
 
-    private void SaveCoins()
+    public void SaveCoins()
     {
         // Save the current coins value to PlayerPrefs
         PlayerPrefs.SetInt(CoinsPrefsKey, coins);
@@ -54,13 +54,27 @@ public class PlayerInventory : MonoBehaviour
     public void LoadCoins()
     {
         // Load coins from PlayerPrefs
-        coins = PlayerPrefs.GetInt(CoinsPrefsKey, 0);
+        ///coins = PlayerPrefs.GetInt(CoinsPrefsKey, 0);
+        int loadedCoins = PlayerPrefs.GetInt(CoinsPrefsKey, 0);
+
+        // Accumulate the loaded coins with the current session's coins
+        coins += loadedCoins;
+
+        // Optionally, you can reset the PlayerPrefs value to avoid accumulation issues
+        // PlayerPrefs.SetInt(CoinsPrefsKey, 0);
+
+        // Update the coins UI
+        UpdateCoinsUI();
+
+
+
     }
 
-    private void UpdateCoinsUI()
+    public void UpdateCoinsUI()
     {
         //Debug.Log("Coins: " + coins);
         //update coins UI 
         coinsText.text = "Coins: " + coins;
+        SaveCoins();
     }
 }

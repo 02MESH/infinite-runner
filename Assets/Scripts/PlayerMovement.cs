@@ -46,6 +46,9 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>(); //not initialised properly
         // Get the PlayerInventory component when the game starts
         playerInventory = GetComponent<PlayerInventory>();
+        playerInventory = PlayerInventory.Instance;
+
+        playerInventory.LoadCoins();
 
         highScore = PlayerPrefs.GetFloat("HighScore", 0f);
     }
@@ -178,11 +181,12 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    void GameOver()
+    public void GameOver()
     {
         
         SaveHighScore();
-        
+        playerInventory.SaveCoins();
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ApplyScoreMultiplier(float multiplier, float duration)
