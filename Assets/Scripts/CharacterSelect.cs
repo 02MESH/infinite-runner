@@ -14,7 +14,6 @@ public class CharacterSelect : MonoBehaviour
         foreach (GameObject character in characters)
         {
             character.SetActive(false);
-
             characters[charIndex].SetActive(true);
         }
     }
