@@ -12,7 +12,7 @@ public class Coins : Collectible
     {
         // Add coins to the player's inventory or score
         playerTransform.GetComponent<PlayerInventory>().AddCoins(coinsToAdd);
-
+        //PlayerInventory.Instance.SaveCoins();
         // Deactivate the collectible
         gameObject.SetActive(false);
     }

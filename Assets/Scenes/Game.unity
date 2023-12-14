@@ -511,6 +511,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5061790008521256300, guid: be8223f55fe52d64f9133e143f183664, type: 3}
+      propertyPath: coinsText
+      value: 
+      objectReference: {fileID: 1190220362}
+    - target: {fileID: 7674224262811266336, guid: be8223f55fe52d64f9133e143f183664, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 603684504}
+    - target: {fileID: 7674224262811266336, guid: be8223f55fe52d64f9133e143f183664, type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 1916809547}
     - target: {fileID: 9222455764024306868, guid: be8223f55fe52d64f9133e143f183664, type: 3}
       propertyPath: m_Name
       value: Player Variant
@@ -1018,6 +1030,10 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 603684504}
+    - target: {fileID: 5650097324534568291, guid: 159ee9c72d8e6224f9e4a12156653343, type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6563364778799273207, guid: 159ee9c72d8e6224f9e4a12156653343, type: 3}
       propertyPath: m_Name
       value: Player (2)
@@ -1443,7 +1459,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1538693988205385457, guid: 17edcebc90fa57e48970200b2f8caa29, type: 3}
       propertyPath: m_Text
-      value: 'HighScore: 0'
+      value: 'HighScore: '
       objectReference: {fileID: 0}
     - target: {fileID: 1623946565348604729, guid: 17edcebc90fa57e48970200b2f8caa29, type: 3}
       propertyPath: m_Name
@@ -2399,6 +2415,10 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 603684504}
+    - target: {fileID: 5650097324534568291, guid: 159ee9c72d8e6224f9e4a12156653343, type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6563364778799273207, guid: 159ee9c72d8e6224f9e4a12156653343, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -3018,8 +3038,8 @@ SceneRoots:
   - {fileID: 1809801115}
   - {fileID: 1207668955}
   - {fileID: 363765899}
-  - {fileID: 31134723}
   - {fileID: 791167253}
   - {fileID: 769145897}
   - {fileID: 571973740}
   - {fileID: 142358813}
+  - {fileID: 31134723}

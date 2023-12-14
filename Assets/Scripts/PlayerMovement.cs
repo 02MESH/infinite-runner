@@ -173,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerPrefs.SetFloat("HighScore", highScore);
         PlayerPrefs.Save();
+        Debug.Log("High Score saved: " + highScore);
     }
 
     public void GameOver()

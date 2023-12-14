@@ -115,11 +115,12 @@ public class ShopManager : MonoBehaviour
     public void unlockCharacter() {
           CharacterBp ch = charsBp[charIndex];
 
-    // Use PlayerInventory to deduct coins
-    PlayerInventory.Instance.RemoveCoins(ch.price);
+        // Use PlayerInventory to deduct coins
+        PlayerInventory.Instance.RemoveCoins(ch.price);
+        PlayerInventory.Instance.SaveCoins();
 
-    PlayerPrefs.SetInt(ch.name, 1);
-    PlayerPrefs.SetInt("SelectedChar", charIndex);
-    ch.isUnlocked = true;
+        PlayerPrefs.SetInt(ch.name, 1);
+        PlayerPrefs.SetInt("SelectedChar", charIndex);
+        ch.isUnlocked = true;
     }
 }

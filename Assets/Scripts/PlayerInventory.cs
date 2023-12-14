@@ -44,6 +44,7 @@ public class PlayerInventory : MonoBehaviour
     {
         // Save the current coins value to PlayerPrefs
         PlayerPrefs.SetInt(CoinsPrefsKey, coins);
+        PlayerPrefs.Save();
     }
 
     public int GetCoins()  // Corrected method name
@@ -53,12 +54,15 @@ public class PlayerInventory : MonoBehaviour
 
     public void LoadCoins()
     {
+        
         // Load coins from PlayerPrefs
         ///coins = PlayerPrefs.GetInt(CoinsPrefsKey, 0);
         int loadedCoins = PlayerPrefs.GetInt(CoinsPrefsKey, 0);
+        
+        coins = 0; // can comment out 
 
         // Accumulate the loaded coins with the current session's coins
-        coins += loadedCoins;
+        coins += loadedCoins; // can change from += to =
 
         // Optionally, you can reset the PlayerPrefs value to avoid accumulation issues
         // PlayerPrefs.SetInt(CoinsPrefsKey, 0);
@@ -67,7 +71,16 @@ public class PlayerInventory : MonoBehaviour
         UpdateCoinsUI();
 
 
+        ////////// doesnt double coins of new character but still doesnt work properly and doesnt have coins = 0
+        // Load coins from PlayerPrefs
+        //int loadedCoins = PlayerPrefs.GetInt(CoinsPrefsKey, 0);
 
+        // Accumulate the loaded coins with the existing coins from previous sessions
+       //coins = loadedCoins;
+
+        // Update the coins UI
+        ///UpdateCoinsUI();
+        ///////////
     }
 
     public void UpdateCoinsUI()
@@ -75,6 +88,9 @@ public class PlayerInventory : MonoBehaviour
         //Debug.Log("Coins: " + coins);
         //update coins UI 
         coinsText.text = "Coins: " + coins;
-        SaveCoins();
+        if (coins != PlayerPrefs.GetInt(CoinsPrefsKey, 0))
+        {
+            SaveCoins();
+        }
     }
 }
