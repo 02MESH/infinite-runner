@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 public class ShopManager : MonoBehaviour
 {
-
     public int charIndex;
     public GameObject[] characterModels;
 
@@ -14,7 +13,6 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-
         PlayerInventory playerInventory = PlayerInventory.Instance;
 
         // Load the player's coins
