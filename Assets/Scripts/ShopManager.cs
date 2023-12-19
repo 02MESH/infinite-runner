@@ -14,14 +14,10 @@ public class ShopManager : MonoBehaviour
     void Start()
     {
         PlayerInventory playerInventory = PlayerInventory.Instance;
-
-        // Load the player's coins
         playerInventory.LoadCoins();
-
-        // Update the UI to display the current coins
         playerInventory.UpdateCoinsUI();
 
-
+        // looks at all the variables in characterBp 
         foreach (CharacterBp character in charsBp){
             if (character.price == 0)
             {
@@ -34,7 +30,7 @@ public class ShopManager : MonoBehaviour
 
         }
         charIndex = PlayerPrefs.GetInt("SelectedChar", 0);
-
+        //sets playable character to whats selected in the shop menu and keeps the others hidden
         foreach (GameObject character in characterModels) {
             character.SetActive(false);
 
@@ -49,57 +45,66 @@ public class ShopManager : MonoBehaviour
     }
 
     public void nextChar() {
+        //sets character models inactive if if its not in view e.g scroll to second character the 1st and 3rd one wont be displayed
         characterModels[charIndex].SetActive(false);
-
+        // move along the array
         charIndex++;
+        // if the scroll reaches the end make index go to 0 to see first character again
         if (charIndex == characterModels.Length)
         {
             charIndex = 0;
         }
-
+        //display the character when player clicks arrow in shop 
         characterModels[charIndex].SetActive(true);
         CharacterBp ch = charsBp[charIndex];
+        //if character is not unlocked do nothing 
         if (!ch.isUnlocked) {
             return;
             
         }
+        //set the selected character to the one thats visible when exiting the shop
         PlayerPrefs.SetInt("SelectedChar", charIndex);
     }
 
     public void prevChar()
     {
+        //sets character models inactive if if its not in view e.g scroll to second character the 1st and 3rd one wont be displayed
         characterModels[charIndex].SetActive(false);
-
+        // move along the array backwards 
         charIndex--;
+        //will go to the end character in the array 
         if (charIndex == -1)
         {
             charIndex = characterModels.Length -1;
         }
-
+        //display the character when player clicks arrow in shop 
         characterModels[charIndex].SetActive(true);
         CharacterBp ch = charsBp[charIndex];
+        //if character is not unlocked do nothing 
         if (!ch.isUnlocked)
         {
             return;
             
         }
+        //set the selected character to the one thats visible when exiting the shop
         PlayerPrefs.SetInt("SelectedChar", charIndex);
     }
 
     private void UpdateUI() {
         CharacterBp ch = charsBp[charIndex];
-
+        // if character is unlocked it gets rid of the buy button
         if (ch.isUnlocked)
         {
             buyButton.gameObject.SetActive(false);
         }
         else
         {
+            //buy button can be seen and displays the price thats grabbed from the values set in charsBp
             buyButton.gameObject.SetActive(true);
             buyButton.GetComponentInChildren<TextMeshProUGUI>().text = "Buy -" + ch.price;
 
-            // Use PlayerInventory to check coins
-            if (ch.price < PlayerInventory.Instance.GetCoins())  // Corrected method name
+            // Use PlayerInventory to check coins if enough coins player can buy if not then the player cant  buy it 
+            if (ch.price < PlayerInventory.Instance.GetTotalCoins())  
             {
                 buyButton.interactable = true;
             }
@@ -111,9 +116,8 @@ public class ShopManager : MonoBehaviour
     }
 
     public void unlockCharacter() {
-          CharacterBp ch = charsBp[charIndex];
+        CharacterBp ch = charsBp[charIndex];
 
-        // Use PlayerInventory to deduct coins
         PlayerInventory.Instance.RemoveCoins(ch.price);
         PlayerInventory.Instance.SaveCoins();
 

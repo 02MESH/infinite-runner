@@ -10,6 +10,12 @@ public class DeathCollider : MonoBehaviour
             PlayerMovement player = other.GetComponent<PlayerMovement>();
             if (player != null)
             {
+                PlayerInventory playerInventory = FindObjectOfType<PlayerInventory>();
+
+                if (playerInventory != null)
+                {
+                    playerInventory.SaveCoins();  // Call SaveCoins from PlayerInventory
+                }
                 // Call the GameOver method on the PlayerMovement script
                 player.GameOver();
             }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.42274046, g: 0.45344037, b: 0.47571635, a: 1}
+  m_IndirectSpecularColor: {r: 0.4227408, g: 0.45344085, b: 0.47571683, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -196,11 +196,11 @@ MonoBehaviour:
     isUnlocked: 1
   - name: Ellie
     index: 0
-    price: 50
+    price: 0
     isUnlocked: 0
   - name: Zomboy
     index: 0
-    price: 100
+    price: 0
     isUnlocked: 0
   buyButton: {fileID: 845378578}
 --- !u!1 &129509998

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //array for player movement
     public float[] xPos;
-    int xPosIndex = 2;
+    int xPosIndex = 1;
     public float speed = 5f;
     public float floorHeight;
     public float maxSpeed;
@@ -180,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
     {
         
         SaveHighScore();
-        playerInventory.SaveCoins();
+        //playerInventory.SaveCoins();
         SceneManager.LoadScene("MainMenu");
     }
 
