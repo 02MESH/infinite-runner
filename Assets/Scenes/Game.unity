@@ -1423,6 +1423,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1297343404119731368, guid: 17edcebc90fa57e48970200b2f8caa29, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297343404119731368, guid: 17edcebc90fa57e48970200b2f8caa29, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297343404119731368, guid: 17edcebc90fa57e48970200b2f8caa29, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1538693988205385457, guid: 17edcebc90fa57e48970200b2f8caa29, type: 3}
       propertyPath: m_Text
       value: 'HighScore: '
@@ -2838,8 +2850,6 @@ MonoBehaviour:
   - {fileID: 1245573148}
   - {fileID: 910811625}
   - {fileID: 252454840}
-  virtualCamera: {fileID: 0}
-  newFollowTarget: {fileID: 0}
 --- !u!1001 &1910419779
 PrefabInstance:
   m_ObjectHideFlags: 0

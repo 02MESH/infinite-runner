@@ -162,18 +162,17 @@ public class PlayerMovement : MonoBehaviour
         if (score > highScore)
         {
             highScore = score;
-            if (highScoreText != null)
-            {
-                highScoreText.text = "HighScore: " + Mathf.Round(highScore);
-            }
+           
         }
+
+        highScoreText.text = "HighScore: " + Mathf.Round(highScore);
+
     }
 
     void SaveHighScore()
     {
         PlayerPrefs.SetFloat("HighScore", highScore);
         PlayerPrefs.Save();
-        Debug.Log("High Score saved: " + highScore);
     }
 
     public void GameOver()

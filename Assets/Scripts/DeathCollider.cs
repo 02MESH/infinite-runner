@@ -16,6 +16,7 @@ public class DeathCollider : MonoBehaviour
                 {
                     playerInventory.SaveCoins();  // Call SaveCoins from PlayerInventory
                 }
+                
                 // Call the GameOver method on the PlayerMovement script
                 player.GameOver();
             }
