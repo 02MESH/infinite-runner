@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //array for player movement
     public float[] xPos;
-    int xPosIndex = 1;
+    int xPosIndex = 2;
     public float speed = 5f;
     public float floorHeight;
     public float maxSpeed;
