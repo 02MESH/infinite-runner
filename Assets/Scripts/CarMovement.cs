@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
+    //public AudioClip carSound;
     // public GameObject car;
     private float speed = 10.0f;
 
@@ -17,5 +18,6 @@ public class CarMovement : MonoBehaviour
     {
         // car.transform.position = Vector.MoveTowards(car.transform.position, )
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        //AudioSource.PlayClipAtPoint(carSound, transform.position);
     }
 }

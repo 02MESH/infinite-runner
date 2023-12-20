@@ -120,3 +120,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpBoostMultiplier: 2
   duration: 10
+  collectSound: {fileID: 8300000, guid: 76f6970997065aa4c8fa7ea64b98b8b0, type: 3}

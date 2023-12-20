@@ -36,7 +36,10 @@ public class PlayerMovement : MonoBehaviour
     public Text scoreText;
     //public Text highScoreText;
     // Start is called before the first frame update
-    
+
+    public AudioClip jumpSound;
+    public AudioClip slideSound;
+    public AudioClip deathSound;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -127,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         //}
         if (Input.GetKeyDown(KeyCode.S)) {
                     animator.SetTrigger("slide");
-
+            AudioSource.PlayClipAtPoint(slideSound, transform.position);
             // StartCoroutine(Slide());
         }
         //animator.SetBool("isRunning", xPosIndex != 1);
@@ -149,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump() {
         direction.y = jumpForce;
         animator.SetTrigger("jump");
+        AudioSource.PlayClipAtPoint(jumpSound, transform.position);
     }
     
     void UpdateScore() {
@@ -190,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameOver()
     {
-        
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
         SaveHighScore();
         //playerInventory.SaveCoins();
         SceneManager.LoadScene("Leaderboard");

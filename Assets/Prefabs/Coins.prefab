@@ -119,3 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsToAdd: 1
+  coinCollectSound: {fileID: 8300000, guid: 0a273ebe0e98f51468705eab7ebaefdd, type: 3}

@@ -948,9 +948,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7183697600780809480, guid: db124bcf16d6e304bb9d0f3d03b62f82, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f80f127aa0f6585459d78b3631999369, type: 3}
+    - target: {fileID: 7183697600780809480, guid: db124bcf16d6e304bb9d0f3d03b62f82, type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 603684504}
+    - target: {fileID: 7183697600780809480, guid: db124bcf16d6e304bb9d0f3d03b62f82, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6452952d4ded80b4bb075af60658c474, type: 3}
+    - target: {fileID: 7183697600780809480, guid: db124bcf16d6e304bb9d0f3d03b62f82, type: 3}
+      propertyPath: slideSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d5135cf95f07104b8c781c75f4ad153, type: 3}
     - target: {fileID: 7183697600780809480, guid: db124bcf16d6e304bb9d0f3d03b62f82, type: 3}
       propertyPath: highScoreText
       value: 
@@ -1256,9 +1268,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 1809801115}
     m_Modifications:
     - target: {fileID: 1546930633004484483, guid: 53bb9394e20b98f49aa3ec110359db84, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f80f127aa0f6585459d78b3631999369, type: 3}
+    - target: {fileID: 1546930633004484483, guid: 53bb9394e20b98f49aa3ec110359db84, type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 603684504}
+    - target: {fileID: 1546930633004484483, guid: 53bb9394e20b98f49aa3ec110359db84, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6452952d4ded80b4bb075af60658c474, type: 3}
+    - target: {fileID: 1546930633004484483, guid: 53bb9394e20b98f49aa3ec110359db84, type: 3}
+      propertyPath: slideSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d5135cf95f07104b8c781c75f4ad153, type: 3}
     - target: {fileID: 1546930633004484483, guid: 53bb9394e20b98f49aa3ec110359db84, type: 3}
       propertyPath: highScoreText
       value: 
@@ -2406,9 +2430,21 @@ PrefabInstance:
       value: Michelle
       objectReference: {fileID: 0}
     - target: {fileID: 1794237997890712189, guid: 0c95e61f5873dc646b89878b8a7724b0, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f80f127aa0f6585459d78b3631999369, type: 3}
+    - target: {fileID: 1794237997890712189, guid: 0c95e61f5873dc646b89878b8a7724b0, type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 603684504}
+    - target: {fileID: 1794237997890712189, guid: 0c95e61f5873dc646b89878b8a7724b0, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6452952d4ded80b4bb075af60658c474, type: 3}
+    - target: {fileID: 1794237997890712189, guid: 0c95e61f5873dc646b89878b8a7724b0, type: 3}
+      propertyPath: slideSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d5135cf95f07104b8c781c75f4ad153, type: 3}
     - target: {fileID: 1794237997890712189, guid: 0c95e61f5873dc646b89878b8a7724b0, type: 3}
       propertyPath: highScoreText
       value: 
