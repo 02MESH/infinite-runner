@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     public Text scoreText;
-    public Text highScoreText;
+    //public Text highScoreText;
     // Start is called before the first frame update
     
     void Start()
@@ -165,14 +165,27 @@ public class PlayerMovement : MonoBehaviour
            
         }
 
-        highScoreText.text = "HighScore: " + Mathf.Round(highScore);
+        //highScoreText.text = "HighScore: " + Mathf.Round(highScore);
 
     }
 
     void SaveHighScore()
     {
-        PlayerPrefs.SetFloat("HighScore", highScore);
+        for (int i = 1; i <= 10; i++)
+        {
+            float existingScore = PlayerPrefs.GetFloat("HighScore" + i, 0f);
+            if (highScore > existingScore)
+            {
+                float tempScore = existingScore;
+                PlayerPrefs.SetFloat("HighScore" + i, highScore);
+                highScore = tempScore;
+            }
+        }
         PlayerPrefs.Save();
+
+
+        //PlayerPrefs.SetFloat("HighScore", highScore);
+        //PlayerPrefs.Save();
     }
 
     public void GameOver()
@@ -180,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
         
         SaveHighScore();
         //playerInventory.SaveCoins();
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Leaderboard");
     }
 
     public void ApplyScoreMultiplier(float multiplier, float duration)
