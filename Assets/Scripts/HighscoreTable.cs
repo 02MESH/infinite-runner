@@ -9,38 +9,44 @@ public class HighscoreTable : MonoBehaviour
 
     private void Awake()
     {
+        //finds both container and template in scene
         entContainer = transform.Find("Container");
         entTemplate = entContainer.Find("EntryTemplate");
 
         entTemplate.gameObject.SetActive(false);
-        // Remove the initialization code from the Awake method
+        
     }
 
     public void UpdateTable(List<float> highScores)
     {
         for (int i = 0; i < highScores.Count; i++)
         {
+            //instantiate template and container for leaderboard 
             Transform entryTransform = Instantiate(entTemplate, entContainer);
             RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
             entryRectTransform.anchoredPosition = new Vector2(0, -20f * i);
 
             entryTransform.gameObject.SetActive(true);
 
+            // rank is index + 1 
             int rank = i + 1;
+            // gets the rank sting and displays it in the position text
             string rankString = GetRankString(rank);
             entryTransform.Find("PositionText").GetComponent<Text>().text = rankString;
-
+            
+            // gets the score and displays it in the score text
             float score = highScores[i];
             entryTransform.Find("ScoreText").GetComponent<Text>().text = Mathf.Round(score).ToString();
 
-            // You may want to fetch player names from PlayerPrefs or some other source
-            string name = "AAA";
+            // change this to take player prefs of name
+            string name = PlayerPrefs.GetString("HighScoreName" + (i + 1), "");
             entryTransform.Find("NameText").GetComponent<Text>().text = name;
         }
     }
 
     private string GetRankString(int rank)
     {
+        //for 1,2,3 it will return a unique pos name with the rest it takes the rank and adds th 
         switch (rank)
         {
             default:

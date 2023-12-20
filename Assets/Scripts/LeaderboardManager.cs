@@ -24,9 +24,11 @@ public class LeaderboardManager : MonoBehaviour
                 {
                     float tempScore = PlayerPrefs.GetFloat("HighScore" + (j - 1), 0f);
                     PlayerPrefs.SetFloat("HighScore" + j, tempScore);
+
                 }
 
                 PlayerPrefs.SetFloat("HighScore" + i, newScore);
+
                 break; // Exit the loop after updating the leaderboard
             }
         }
