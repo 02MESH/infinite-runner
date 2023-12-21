@@ -17,7 +17,7 @@ public class HighscoreTable : MonoBehaviour
         
     }
 
-    public void UpdateTable(List<float> highScores)
+    public void UpdateTable(List<float> highScores, List<string> playerNames)
     {
         for (int i = 0; i < highScores.Count; i++)
         {
@@ -39,7 +39,10 @@ public class HighscoreTable : MonoBehaviour
             entryTransform.Find("ScoreText").GetComponent<Text>().text = Mathf.Round(score).ToString();
 
             // change this to take player prefs of name
-            string name = PlayerPrefs.GetString("HighScoreName" + (i + 1), "");
+            //string name = PlayerPrefs.GetString("name", "");
+            //entryTransform.Find("NameText").GetComponent<Text>().text = name;
+
+            string name = playerNames[i];
             entryTransform.Find("NameText").GetComponent<Text>().text = name;
         }
     }

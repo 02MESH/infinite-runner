@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-
+    //Scene loader
     public void PlayGame()
     {
         SceneManager.LoadScene("Game");
-
     }
 
     public void Shop() {
@@ -20,6 +19,10 @@ public class MainMenu : MonoBehaviour
     public void Leaderboard()
     {
         SceneManager.LoadScene("Leaderboard");
+    }
+    public void ChangeName()
+    {
+        SceneManager.LoadScene("PlayerName");
     }
     public void QuitGame()
     {

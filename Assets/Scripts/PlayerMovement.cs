@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
             MoveRight();
         }
         
-        Debug.Log("isGrounded: " + controller.isGrounded);
+        //Debug.Log("isGrounded: " + controller.isGrounded);
 
         //}
         if (Input.GetKeyDown(KeyCode.S)) {
