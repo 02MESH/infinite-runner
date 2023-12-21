@@ -12,14 +12,17 @@ public class CharacterSelect : MonoBehaviour
 
     void Start()
     {
+        //finds virtual camera 
         virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        //retrieves character at index in player prefs 
         charIndex = PlayerPrefs.GetInt("SelectedChar", 0);
+        //iterate through each character in the array 
         foreach (GameObject character in characters)
         {
             character.SetActive(false);
-            characters[charIndex].SetActive(true);
+            characters[charIndex].SetActive(true); //activates selected character
         }
-        newFollowTarget = characters[charIndex].transform;
-        virtualCamera.Follow = newFollowTarget;
+        newFollowTarget = characters[charIndex].transform; // assigns the follow target 
+        virtualCamera.Follow = newFollowTarget; //makes camera follow selected character
     }
 }

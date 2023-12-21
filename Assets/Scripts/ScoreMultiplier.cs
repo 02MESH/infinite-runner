@@ -15,7 +15,7 @@ public class ScoreMultiplier : Collectible
     {
         // Get the PlayerMovement component from the player
         PlayerMovement playerMovement = playerTransform.GetComponent<PlayerMovement>();
-
+        //play sound clip
         AudioSource.PlayClipAtPoint(collectSound, transform.position);
         if (playerMovement != null)
         {

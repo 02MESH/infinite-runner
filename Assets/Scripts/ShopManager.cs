@@ -13,28 +13,31 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
+        //get instance of player inventory
         PlayerInventory playerInventory = PlayerInventory.Instance;
+        //load coins from player inventory 
         playerInventory.LoadCoins();
+        //update ui for coins from player inventory 
         playerInventory.UpdateCoinsUI();
 
         // looks at all the variables in characterBp 
         foreach (CharacterBp character in charsBp){
-            if (character.price == 0)
+            if (character.price == 0) //if price is 0 
             {
-                character.isUnlocked = true;
+                character.isUnlocked = true; //character is unlocked
             }
             else {
-                int isUnlockedValue = PlayerPrefs.GetInt(character.name, 0);
+                int isUnlockedValue = PlayerPrefs.GetInt(character.name, 0); 
                 character.isUnlocked = isUnlockedValue == 1; // Assuming 1 means unlocked, 0 means locked
             }
 
         }
-        charIndex = PlayerPrefs.GetInt("SelectedChar", 0);
+        charIndex = PlayerPrefs.GetInt("SelectedChar", 0); // gets index of selected character from array
         //sets playable character to whats selected in the shop menu and keeps the others hidden
         foreach (GameObject character in characterModels) {
             character.SetActive(false);
 
-            characterModels[charIndex].SetActive(true);
+            characterModels[charIndex].SetActive(true); // sets character model at charindex that is selected as active 
         }       
     }
 
@@ -117,12 +120,14 @@ public class ShopManager : MonoBehaviour
 
     public void unlockCharacter() {
         CharacterBp ch = charsBp[charIndex];
-
+        //when character is unlocked it removes the cost of the character from player inventory coins
         PlayerInventory.Instance.RemoveCoins(ch.price);
+        //saves the new amount of coins
         PlayerInventory.Instance.SaveCoins();
-
+        // sets integer of what the selected character is in the array 
         PlayerPrefs.SetInt(ch.name, 1);
         PlayerPrefs.SetInt("SelectedChar", charIndex);
+        //once brought it sets unlocked to true
         ch.isUnlocked = true;
     }
 }

@@ -9,6 +9,7 @@ public class Rotator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //rotates coins
         transform.Rotate(0, rotateSpeed * Time.deltaTime, 0); 
     }
 }

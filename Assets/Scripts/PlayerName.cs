@@ -23,13 +23,15 @@ public class PlayerName : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //key for name of player in player prefs 
         nameOfPlayer = PlayerPrefs.GetString("name", "none");
+        //loads the name to the text of to whats typed in textbox 
         loadedName.text = nameOfPlayer;
 
     }
 
     public void SetName() {
-
+        //takes name in textbox and sets the key name in player prefs to the name thats set in the textbox
         saveName = inputText.text;
         PlayerPrefs.SetString("name", saveName);
     }
