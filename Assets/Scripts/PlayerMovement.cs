@@ -34,9 +34,12 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     public Text scoreText;
-    public Text highScoreText;
+    //public Text highScoreText;
     // Start is called before the first frame update
-    
+
+    public AudioClip jumpSound;
+    public AudioClip slideSound;
+    public AudioClip deathSound;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -131,6 +134,12 @@ public class PlayerMovement : MonoBehaviour
         
         Debug.Log("isGrounded: " + controller.isGrounded);
 
+        //}
+        if (Input.GetKeyDown(KeyCode.S)) {
+                    animator.SetTrigger("slide");
+            AudioSource.PlayClipAtPoint(slideSound, transform.position);
+            // StartCoroutine(Slide());
+        }
         //animator.SetBool("isRunning", xPosIndex != 1);
         //+= transform.forward * Time.deltaTime;
         //transform.position = Vector3.MoveTowards(transform.position, new Vector3(xPos[xPosIndex], floorHeight, transform.position.z + 1), Time.deltaTime * speed);
@@ -163,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump() {
         direction.y = jumpForce;
         animator.SetTrigger("jump");
+        AudioSource.PlayClipAtPoint(jumpSound, transform.position);
     }
     
     void UpdateScore() {
@@ -179,22 +189,35 @@ public class PlayerMovement : MonoBehaviour
            
         }
 
-        highScoreText.text = "HighScore: " + Mathf.Round(highScore);
+        //highScoreText.text = "HighScore: " + Mathf.Round(highScore);
 
     }
 
     void SaveHighScore()
     {
-        PlayerPrefs.SetFloat("HighScore", highScore);
+        for (int i = 1; i <= 10; i++)
+        {
+            float existingScore = PlayerPrefs.GetFloat("HighScore" + i, 0f);
+            if (highScore > existingScore)
+            {
+                float tempScore = existingScore;
+                PlayerPrefs.SetFloat("HighScore" + i, highScore);
+                highScore = tempScore;
+            }
+        }
         PlayerPrefs.Save();
+
+
+        //PlayerPrefs.SetFloat("HighScore", highScore);
+        //PlayerPrefs.Save();
     }
 
     public void GameOver()
     {
-        
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
         SaveHighScore();
         //playerInventory.SaveCoins();
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Leaderboard");
     }
 
     public void ApplyScoreMultiplier(float multiplier, float duration)

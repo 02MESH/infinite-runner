@@ -9,11 +9,14 @@ public class ScoreMultiplier : Collectible
     // duration of the collectible
     public float duration = 10.0f;
 
+    public AudioClip collectSound;
+
     public override void ApplyEffect(Transform playerTransform)
     {
         // Get the PlayerMovement component from the player
         PlayerMovement playerMovement = playerTransform.GetComponent<PlayerMovement>();
 
+        AudioSource.PlayClipAtPoint(collectSound, transform.position);
         if (playerMovement != null)
         {
             // Apply the score multiplier to the player's score increase rate

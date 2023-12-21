@@ -8,9 +8,10 @@ public class JumpBoostCollectible : Collectible
     public float jumpBoostMultiplier = 2.0f;
     // duration of the collectible
     public float duration = 10.0f;
-
+    public AudioClip collectSound;
     public override void ApplyEffect(Transform playerTransform)
     {
+        AudioSource.PlayClipAtPoint(collectSound, transform.position);
         // Apply the jump boost effect to the player
         playerTransform.GetComponent<PlayerMovement>().ApplyJumpBoost(jumpBoostMultiplier, duration);
 
