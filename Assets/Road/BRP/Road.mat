@@ -60,7 +60,7 @@ Material:
     - _Edge_Gap: 0.15
     - _Edge_Noise_Amount: 130.7
     - _Edge_Normal_Height: 33.72
-    - _Edge_Roughness: 0.414
+    - _Edge_Roughness: 1
     - _Edge_Width: 0.09
     - _Normal_Strength: 0.01
     - _QueueControl: 0
