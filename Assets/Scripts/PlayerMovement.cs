@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //array for player movement
     public float[] xPos;
-    int xPosIndex = 1;
+    int xPosIndex = 2;
     public float speed = 5f;
     public float floorHeight;
     public float maxSpeed;
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 direction;
     public float jumpForce = 10f;
     public float Gravity = -20;
-    //bool isGrounded = true;
+    bool isGrounded = true;
 
     //player inventory
     private PlayerInventory playerInventory;
@@ -86,14 +86,14 @@ public class PlayerMovement : MonoBehaviour
         jumpForce = originalJumpForce;
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "ground")
-        {
-            //isGrounded = true;
-            animator.SetBool("isJumping", false); //causing error cannot find Animator
-        }
-    }
+    // void OnCollisionEnter(Collision other)
+    // {
+    //     if (other.gameObject.tag == "ground")
+    //     {
+    //         isGrounded = true;
+    //         animator.SetBool("isJumping", false); //causing error cannot find Animator
+    //     }
+    // }
 
     // bool isGrounded() {
 
@@ -102,34 +102,35 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("isGrounded: " + controller.isGrounded);
-        direction.y += Gravity * Time.deltaTime;
+        isGrounded = controller.isGrounded || IsGroundedRaycast();
+
+        if(isGrounded) {
+            direction.y = 0f;
+            if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    //rb.AddForce(jump * jumpForce, ForceMode.Impulse); //trying to remove this 
+                    Jump();
+                    // StartCoroutine(Jumps());
+                    //isGrounded = false;
+                }
+            if (Input.GetKeyDown(KeyCode.S)) {
+                animator.SetTrigger("slide");
+                StartCoroutine(Slide());
+            }
+        } else {
+            // If the player is not grounded, apply gravity
+            direction.y += Gravity * Time.deltaTime;
+        }
         if (Input.GetKeyDown(KeyCode.A)) {
             MoveLeft();
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             MoveRight();
-            Debug.Log("Moving Right");
         }
-     // if (controller.isGrounded)
-     //   {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //rb.AddForce(jump * jumpForce, ForceMode.Impulse); //trying to remove this 
-            Jump();
-            // StartCoroutine(Jumps());
-            //isGrounded = false;
-        }
-       //}
-        //else{
+        
+        Debug.Log("isGrounded: " + controller.isGrounded);
 
-        //}
-        if (Input.GetKeyDown(KeyCode.S)) {
-                    animator.SetTrigger("slide");
-
-            // StartCoroutine(Slide());
-        }
         //animator.SetBool("isRunning", xPosIndex != 1);
         //+= transform.forward * Time.deltaTime;
         //transform.position = Vector3.MoveTowards(transform.position, new Vector3(xPos[xPosIndex], floorHeight, transform.position.z + 1), Time.deltaTime * speed);
@@ -144,6 +145,19 @@ public class PlayerMovement : MonoBehaviour
             speed += 0.1f * Time.deltaTime;
         }
         UpdateScore();
+    }
+
+    bool IsGroundedRaycast()
+    {
+        float raycastDistance = 0.1f; // Adjust the distance as needed
+        Vector3 raycastOrigin = transform.position + Vector3.up * 0.1f; // Offset slightly above the player's position
+
+        if (Physics.Raycast(raycastOrigin, Vector3.down, raycastDistance))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void Jump() {
@@ -203,19 +217,19 @@ public class PlayerMovement : MonoBehaviour
         scoreIncreaseRate = originalScoreIncreaseRate;
     }
 
-    // IEnumerator Slide() {
-    //     animator.SetTrigger("slide");
-    //     // animator.SetBool("isSliding", true);
-    //     // //changes height and center of collider to slide under objects
-    //     // controller.center = new Vector3(0, 0.5f, 0);
-    //     // controller.height = 0.1f;
-    //     // yield return new WaitForSeconds(1.3f);
+    IEnumerator Slide() {
+        float originalHeight = controller.height;
+        float reducedHeight = 0.5f;
 
-    //     // //changes back to original height and centre of collider
-    //     // controller.center = new Vector3(0, 1f, 0);
-    //     // controller.height = 2;
-    //     // animator.SetBool("isSliding", false);
-    // }
+        controller.height = reducedHeight;
+
+        controller.center = new Vector3(controller.center.x, reducedHeight / 2f, controller.center.z);
+
+        yield return new WaitForSeconds(1.3f);
+
+        controller.height = originalHeight;
+        controller.center = new Vector3(controller.center.x, originalHeight / 2f, controller.center.z);
+    }
 
     IEnumerator Jumps()
     {

@@ -11,27 +11,13 @@ public class DeathCollider : MonoBehaviour
             if (player != null)
             {
                 PlayerInventory playerInventory = FindObjectOfType<PlayerInventory>();
-
                 if (playerInventory != null)
                 {
                     playerInventory.SaveCoins();  // Call SaveCoins from PlayerInventory
                 }
-                
                 // Call the GameOver method on the PlayerMovement script
                 player.GameOver();
             }
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
