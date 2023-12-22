@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = IsGroundedRaycast();
-        Debug.Log("isGrounded is: " + isGrounded);
+        //Debug.Log("isGrounded is: " + isGrounded);
 
         if (controller.isGrounded)
         {
