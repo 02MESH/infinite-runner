@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - rotateTruck
   - characterSelect
+  - collisionCar
   layers:
   - Default
   - TransparentFX

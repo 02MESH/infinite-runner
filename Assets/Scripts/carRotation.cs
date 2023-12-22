@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TruckMovement : MonoBehaviour
+public class carRotation : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
         GameObject collidedObject = other.gameObject;
         if(collidedObject.transform.parent != null && (other.gameObject.name == "rotateVehicleRight") || other.gameObject.name == "rotateVehicleLeft") { 
             Transform parentObject = collidedObject.transform.parent;
-            Transform truckAndTrailer = parentObject.Find("truckAndTrailer");
-            //Debug.Log(collidedObject.transform.parent.gameObject.name);
-            //Debug.Log(truckAndTrailer);
-            if(other.gameObject.name == "rotateVehicleRight") {
-                //Debug.Log("Right Switch");
-                leftToRight(truckAndTrailer);
-            } else if(other.gameObject.name == "rotateVehicleLeft") {
-                //Debug.Log("Left switch");
-                rightToLeft(truckAndTrailer);
+            Transform truckAndTrailer = parentObject.Find("Free Racing Car Blue Variant");
+            if(truckAndTrailer != null) {
+                if(other.gameObject.name == "rotateVehicleRight") {
+                    leftToRight(truckAndTrailer);
+                    Debug.Log("Left");
+                } else if(other.gameObject.name == "rotateVehicleLeft") {
+                    rightToLeft(truckAndTrailer);
+                    Debug.Log("Right");
+                }
             }
         }
     }
