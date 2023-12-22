@@ -46,8 +46,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //gets character contorller 
         controller = GetComponent<CharacterController>();
-        // rb = GetComponent<Rigidbody>(); //trying to remove this 
-        //direction = new Vector3(0.0f, 2.0f, 0.0f);
         //animations 
         animator = GetComponent<Animator>(); 
         // Get the PlayerInventory component when the game starts
