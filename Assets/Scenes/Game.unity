@@ -518,7 +518,7 @@ MonoBehaviour:
   superJumpSpeed: 20
   superJumpElevation: 30
   superJumpDuration: 3
-  cooldownDuration: 2
+  cooldownDuration: 60
 --- !u!1 &385618901
 GameObject:
   m_ObjectHideFlags: 3
