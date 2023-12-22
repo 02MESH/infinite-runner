@@ -23,6 +23,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("PlayerName"); //load player name scene 
     }
+    public void Controls()
+    {
+        SceneManager.LoadScene("Controls"); //load controls name scene 
+    }
     public void QuitGame()
     {
         Application.Quit(); //exit out of game
