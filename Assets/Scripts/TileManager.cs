@@ -21,13 +21,15 @@ public class TileManager : MonoBehaviour
     void Start()
     {
         activeTiles = new List<GameObject>();
-        playerTransform = GameObject.FindWithTag("Player").transform;
+        // playerTransform = GameObject.FindWithTag("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("characterSelect").GetComponent<CharacterSelect>().getTransform();
+        Debug.Log(playerTransform);
         for(int i = 0; tilesOnScreen > i; i++)
             spawnTile();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if(playerTransform.position.z - safeZone > (spawnZ - tilesOnScreen * tileLength)) {
             spawnTile();

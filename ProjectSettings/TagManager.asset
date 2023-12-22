@@ -8,6 +8,7 @@ TagManager:
   - ground
   - Coin
   - rotateTruck
+  - characterSelect
   layers:
   - Default
   - TransparentFX

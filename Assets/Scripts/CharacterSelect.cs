@@ -25,4 +25,9 @@ public class CharacterSelect : MonoBehaviour
         newFollowTarget = characters[charIndex].transform; // assigns the follow target 
         virtualCamera.Follow = newFollowTarget; //makes camera follow selected character
     }
+
+    public Transform getTransform() {
+        int characterIndex = PlayerPrefs.GetInt("SelectedChar", 0);
+        return characters[characterIndex].transform;
+    }
 }
