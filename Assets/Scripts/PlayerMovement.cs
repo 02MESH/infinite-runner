@@ -93,19 +93,6 @@ public class PlayerMovement : MonoBehaviour
         jumpForce = originalJumpForce;
     }
 
-    // void OnCollisionEnter(Collision other)
-    // {
-    //     if (other.gameObject.tag == "ground")
-    //     {
-    //         isGrounded = true;
-    //         animator.SetBool("isJumping", false); //causing error cannot find Animator
-    //     }
-    // }
-
-    // bool isGrounded() {
-
-    // }
-
     // Update is called once per frame
     void Update()
     {
@@ -214,8 +201,6 @@ public class PlayerMovement : MonoBehaviour
         }
         //saved to player prefs
         PlayerPrefs.Save();
-        //PlayerPrefs.SetFloat("HighScore", highScore);
-        //PlayerPrefs.Save();
     }
 
     public void GameOver()
