@@ -1,3 +1,4 @@
+/*Function to deal with once the player has touched the death collider i.e. die*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

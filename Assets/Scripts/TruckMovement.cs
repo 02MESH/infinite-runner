@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class TruckMovement : MonoBehaviour
 {
+    /*Trigger function that will check whether if the truck has collided with the colliders,
+    if it did, it will rotate the truck and will set it on the other lane for it to start 
+    again.*/    
     void OnTriggerEnter(Collider other)
     {
         GameObject collidedObject = other.gameObject;
         if(collidedObject.transform.parent != null && (other.gameObject.name == "rotateVehicleRight") || other.gameObject.name == "rotateVehicleLeft") { 
             Transform parentObject = collidedObject.transform.parent;
             Transform truckAndTrailer = parentObject.Find("truckAndTrailer");
-            //Debug.Log(collidedObject.transform.parent.gameObject.name);
-            //Debug.Log(truckAndTrailer);
             if(other.gameObject.name == "rotateVehicleRight") {
-                //Debug.Log("Right Switch");
                 leftToRight(truckAndTrailer);
             } else if(other.gameObject.name == "rotateVehicleLeft") {
-                //Debug.Log("Left switch");
                 rightToLeft(truckAndTrailer);
             }
         }
     }
 
+    //Left to right lane and rotation
     void leftToRight(Transform parentTransform) {
         float newXPosition = parentTransform.position.x + 3f;
         float currentYPosition = parentTransform.position.y;
@@ -37,6 +37,7 @@ public class TruckMovement : MonoBehaviour
         parentTransform.rotation = Quaternion.Euler(0f, -90f, 0f);
     }
 
+    //Right to left lane and then rotation
     void rightToLeft(Transform parentTransform) {
         float newXPosition = parentTransform.position.x + 3f;
         float currentYPosition = parentTransform.position.y;

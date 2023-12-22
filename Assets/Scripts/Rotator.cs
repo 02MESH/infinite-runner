@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
-
     public float rotateSpeed = 50;
     // Update is called once per frame
     void Update()

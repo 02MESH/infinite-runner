@@ -5,17 +5,17 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     //List of tile objects
-    public GameObject[] tilePrefabs;
+    public GameObject[] tilePrefabs; //array of all the prefabs
 
-    private Transform playerTransform;
-    private float spawnZ = 0.0f;
-    private float tileLength = 60.0f;
-    private int tilesOnScreen = 3;
-    private float safeZone = 120.0f;
-    private int lastPrefabIndex = 0;
+    private Transform playerTransform; //use the transform of the player
+    private float spawnZ = 0.0f; //running sum of the z position of the tiles
+    private float tileLength = 60.0f; //length of an average tile
+    private int tilesOnScreen = 3; //how many tiles the tileManager should spawn after it reaches a certain threshold
+    private float safeZone = 120.0f;//safe-zone, i.e. will delete the tile after this has been met
+    private int lastPrefabIndex = 0; //position of the last prefab
 
     //List to store tiles which will be deleted later.
-    private List<GameObject> activeTiles;
+    private List<GameObject> activeTiles; //collection of all the activeTiles that need to be deleted
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +37,7 @@ public class TileManager : MonoBehaviour
         }
     }
 
+    //Actual tile spawner
     private void spawnTile(int prefabIndex = -1) {
         spawnZ += tileLength;
         GameObject go;
@@ -46,6 +47,7 @@ public class TileManager : MonoBehaviour
         activeTiles.Add(go);
     }
 
+    //Delete the old tile after threshold met
     private void deleteTile() {
         Destroy(activeTiles[0]);
         activeTiles.RemoveAt(0);

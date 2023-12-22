@@ -133,8 +133,6 @@ public class PlayerMovement : MonoBehaviour
             //calls move right method
             MoveRight();
         }
-        
-        //Debug.Log("isGrounded: " + controller.isGrounded);
         // Move the character using the controller
         controller.Move(direction * Time.deltaTime);
         controller.Move(new Vector3(xPos[xPosIndex] - transform.position.x, 0, 1) * speed * Time.deltaTime);
