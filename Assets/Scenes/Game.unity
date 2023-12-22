@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.42274046, g: 0.45344037, b: 0.47571635, a: 1}
+  m_IndirectSpecularColor: {r: 0.4227408, g: 0.45344085, b: 0.47571683, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -903,7 +903,7 @@ PrefabInstance:
       addedObject: {fileID: 370854176}
     - targetCorrespondingSourceObject: {fileID: 497765469649576896, guid: db124bcf16d6e304bb9d0f3d03b62f82, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 370854177}
+      addedObject: {fileID: 370854181}
   m_SourcePrefab: {fileID: 100100000, guid: db124bcf16d6e304bb9d0f3d03b62f82, type: 3}
 --- !u!1 &370854174 stripped
 GameObject:
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 1190220362}
---- !u!114 &370854177
+--- !u!114 &370854181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -937,13 +937,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 370854174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fa11f85eca69c4ca76620ec8e42539, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ce5f81bae17b384099d7bc2b4ecadf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  superJumpSpeed: 20
-  superJumpElevation: 30
-  superJumpDuration: 3
-  cooldownDuration: 60
 --- !u!1 &385618901
 GameObject:
   m_ObjectHideFlags: 3
@@ -1286,6 +1282,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4289997763423598282, guid: 53bb9394e20b98f49aa3ec110359db84, type: 3}
       insertIndex: -1
       addedObject: {fileID: 597629093}
+    - targetCorrespondingSourceObject: {fileID: 4289997763423598282, guid: 53bb9394e20b98f49aa3ec110359db84, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 597629097}
   m_SourcePrefab: {fileID: 100100000, guid: 53bb9394e20b98f49aa3ec110359db84, type: 3}
 --- !u!1 &597629091 stripped
 GameObject:
@@ -1310,6 +1309,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 1190220362}
+--- !u!114 &597629097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597629091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39fa11f85eca69c4ca76620ec8e42539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superJumpSpeed: 20
+  superJumpElevation: 30
+  superJumpDuration: 3
+  cooldownDuration: 60
 --- !u!4 &599562031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 481966, guid: 010ab566711b9084fad5f5ed2c31d831, type: 3}
@@ -4069,6 +4084,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1794237997890712189, guid: 0c95e61f5873dc646b89878b8a7724b0, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794237997890712189, guid: 0c95e61f5873dc646b89878b8a7724b0, type: 3}
       propertyPath: jumpSound
       value: 
       objectReference: {fileID: 8300000, guid: f80f127aa0f6585459d78b3631999369, type: 3}
@@ -4091,10 +4110,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 691345164464806332, guid: 0c95e61f5873dc646b89878b8a7724b0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1308349381}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c95e61f5873dc646b89878b8a7724b0, type: 3}
 --- !u!1 &1308349379 stripped
 GameObject:

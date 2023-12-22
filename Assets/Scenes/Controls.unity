@@ -903,8 +903,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "A - Move left\nD - Move Right\nS - Slide\nSPACE - Jump\nW - use power
-    \n\nCharacters: \nMichelle - Coin Magnet\nJackie - Super Jump ability\nZomboy
-    - Invincibility"
+    \n\nCharacters: \nMichelle - No ability (Default Character)\nJackie - Coin Magnet\nZomboy
+    - Super Jump ability"
 --- !u!222 &1659465596
 CanvasRenderer:
   m_ObjectHideFlags: 0

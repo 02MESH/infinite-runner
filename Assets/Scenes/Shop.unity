@@ -196,11 +196,11 @@ MonoBehaviour:
     isUnlocked: 1
   - name: Ellie
     index: 0
-    price: 0
+    price: 5
     isUnlocked: 0
   - name: Zomboy
     index: 0
-    price: 100
+    price: 10
     isUnlocked: 0
   buyButton: {fileID: 845378578}
 --- !u!1 &129509998
