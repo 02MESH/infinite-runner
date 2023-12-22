@@ -39,9 +39,10 @@ public class CoinMove : MonoBehaviour
         {
             currentCooldown -= Time.deltaTime;
         }
-        else if (Input.GetKeyDown(KeyCode.W))
-        {
-            ActivateMagnet();
+        else if (Input.GetKeyDown(KeyCode.W)) {
+            if (GameObject.FindGameObjectWithTag("characterSelect").GetComponent<CharacterSelect>().verifyJackie()) {
+                ActivateMagnet();
+            }
         }
     }
 

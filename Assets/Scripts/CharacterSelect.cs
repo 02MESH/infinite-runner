@@ -30,4 +30,9 @@ public class CharacterSelect : MonoBehaviour
         int characterIndex = PlayerPrefs.GetInt("SelectedChar", 0);
         return characters[characterIndex].transform;
     }
+
+    public bool verifyJackie() {
+        int characterIndex = PlayerPrefs.GetInt("SelectedChar", 0);
+        return characterIndex == 1;
+    }
 }
