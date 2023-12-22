@@ -12,6 +12,9 @@ public class LeaderboardManager : MonoBehaviour
     }
     void SetNewHighScore(float newScore, string playerName)
     {
+        // Retrieve the player name from PlayerPrefs
+        //string playerName = PlayerPrefs.GetString("name", "DefaultName");
+        
         // Set a new high score and update the PlayerPrefs
         //iterate through top 10 highscores achieved
         for (int i = 1; i <= 10; i++)
@@ -47,8 +50,10 @@ public class LeaderboardManager : MonoBehaviour
             float score = PlayerPrefs.GetFloat("HighScore" + i, 0f);
             highScores.Add(score);
             //scoreTexts[i - 1].text = i + ". " + Mathf.Round(score);
+            //gets name stored in player prefs from input text box
             string name = PlayerPrefs.GetString("name", "none");
             playerNames.Add(name);
+
             //string name = PlayerPrefs.GetString("NameForHighScore" + i, "");
             //playerNames.Add(name);
         }
