@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SuperJumpCharacter : MonoBehaviour
 {
-    public float superJumpSpeed = 20f;
+ public float superJumpSpeed = 20f;
     public float superJumpElevation = 30f;
     public float superJumpDuration = 3f;
     public float cooldownDuration = 60f;
 
     private bool isSuperJumping = false;
-    private float currentSuperJumpTime = 0f;
+    private float lastSuperJumpTime;
 
     private CharacterController characterController;
     private Vector3 originalPosition;
@@ -19,22 +19,24 @@ public class SuperJumpCharacter : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         originalPosition = transform.position;
+        lastSuperJumpTime = -cooldownDuration;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !isSuperJumping)
+        // button to activate ability and checks if cooldown is up
+        if (Input.GetKeyDown(KeyCode.W) && !isSuperJumping && Time.time - lastSuperJumpTime >= cooldownDuration)
         {
+            // calls method
             StartSuperJump();
         }
-
+        // checks to see if super jump is true
         if (isSuperJumping)
         {
+            // call method
             SuperJump();
-
-            currentSuperJumpTime += Time.deltaTime;
-
-            if (currentSuperJumpTime >= superJumpDuration)
+            //if time - last super jumptime is greater or equal to duration it stops the ability
+            if (Time.time - lastSuperJumpTime >= superJumpDuration)
             {
                 StopSuperJump();
             }
@@ -43,34 +45,23 @@ public class SuperJumpCharacter : MonoBehaviour
 
     private void StartSuperJump()
     {
+        //jump is true and counts the last super jump time 
         isSuperJumping = true;
-        currentSuperJumpTime = 0f;
+        lastSuperJumpTime = Time.time;
     }
 
     private void SuperJump()
     {
-        // Elevate the character
+        // changes character vectors to make character jump 
         characterController.Move(Vector3.up * superJumpElevation * Time.deltaTime);
-
-        // Move the character forward
         Vector3 moveDirection = transform.forward * superJumpSpeed;
         characterController.Move(moveDirection * Time.deltaTime);
     }
 
     private void StopSuperJump()
     {
+        //chages character position to original position 
         isSuperJumping = false;
-
-        // Reset the character's position to the original position
         transform.position = originalPosition;
-
-        // Cooldown before the character can super jump again
-        Invoke("ResetCooldown", cooldownDuration);
-    }
-
-    private void ResetCooldown()
-    {
-        // Allow the character to super jump again after cooldown
-        currentSuperJumpTime = 0f;
     }
 }
