@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HighscoreTable : MonoBehaviour
 {
-    private Transform entContainer;
-    private Transform entTemplate;
+    private Transform entContainer; // container that holds entries of highscore table
+    private Transform entTemplate;  // container that holds single entry in highscore table
 
     private void Awake()
     {
@@ -17,11 +17,12 @@ public class HighscoreTable : MonoBehaviour
         
     }
 
-    public void UpdateTable(List<float> highScores)
+    public void UpdateTable(List<float> highScores, List<string> playerNames)
     {
+        //iterates through list and update table uth scores and names
         for (int i = 0; i < highScores.Count; i++)
         {
-            //instantiate template and container for leaderboard 
+            //instantiate template and container for leaderboard and set its position in container
             Transform entryTransform = Instantiate(entTemplate, entContainer);
             RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
             entryRectTransform.anchoredPosition = new Vector2(0, -20f * i);
@@ -39,7 +40,10 @@ public class HighscoreTable : MonoBehaviour
             entryTransform.Find("ScoreText").GetComponent<Text>().text = Mathf.Round(score).ToString();
 
             // change this to take player prefs of name
-            string name = PlayerPrefs.GetString("HighScoreName" + (i + 1), "");
+            //string name = PlayerPrefs.GetString("name", "");
+            //entryTransform.Find("NameText").GetComponent<Text>().text = name;
+
+            string name = playerNames[i];
             entryTransform.Find("NameText").GetComponent<Text>().text = name;
         }
     }

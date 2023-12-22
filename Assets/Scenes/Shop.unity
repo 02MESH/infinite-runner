@@ -196,7 +196,7 @@ MonoBehaviour:
     isUnlocked: 1
   - name: Ellie
     index: 0
-    price: 50
+    price: 0
     isUnlocked: 0
   - name: Zomboy
     index: 0
