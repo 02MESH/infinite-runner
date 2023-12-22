@@ -12,13 +12,13 @@ public class TruckMovement : MonoBehaviour
         if(collidedObject.transform.parent != null && (other.gameObject.name == "rotateVehicleRight") || other.gameObject.name == "rotateVehicleLeft") { 
             Transform parentObject = collidedObject.transform.parent;
             Transform truckAndTrailer = parentObject.Find("truckAndTrailer");
-            Debug.Log(collidedObject.transform.parent.gameObject.name);
-            Debug.Log(truckAndTrailer);
+            //Debug.Log(collidedObject.transform.parent.gameObject.name);
+            //Debug.Log(truckAndTrailer);
             if(other.gameObject.name == "rotateVehicleRight") {
-                Debug.Log("Right Switch");
+                //Debug.Log("Right Switch");
                 leftToRight(truckAndTrailer);
             } else if(other.gameObject.name == "rotateVehicleLeft") {
-                Debug.Log("Left switch");
+                //Debug.Log("Left switch");
                 rightToLeft(truckAndTrailer);
             }
         }

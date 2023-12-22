@@ -109,21 +109,26 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = controller.isGrounded || IsGroundedRaycast();
+        isGrounded = IsGroundedRaycast();
+        Debug.Log("isGrounded is: " + isGrounded);
 
-        if(isGrounded) {
+        if (controller.isGrounded)
+        {
+            isGrounded = true;
+        }
+
+        if (isGrounded) {
             direction.y = 0f;
             //button to jump
             if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    //rb.AddForce(jump * jumpForce, ForceMode.Impulse); //trying to remove this 
                     Jump();
-                    // StartCoroutine(Jumps());
-                    //isGrounded = false;
                 }
             //button to slide
             if (Input.GetKeyDown(KeyCode.S)) {
                 animator.SetTrigger("slide");
+                //plays audio clip 
+                AudioSource.PlayClipAtPoint(slideSound, transform.position);
                 StartCoroutine(Slide());
             }
         } else {
@@ -143,20 +148,6 @@ public class PlayerMovement : MonoBehaviour
         }
         
         //Debug.Log("isGrounded: " + controller.isGrounded);
-
-        //}
-        //button to slide
-        if (Input.GetKeyDown(KeyCode.S)) {
-            //sets animation trigger 
-            animator.SetTrigger("slide");
-            //plays audio clip 
-            AudioSource.PlayClipAtPoint(slideSound, transform.position);
-            // StartCoroutine(Slide());
-        }
-        //animator.SetBool("isRunning", xPosIndex != 1);
-        //+= transform.forward * Time.deltaTime;
-        //transform.position = Vector3.MoveTowards(transform.position, new Vector3(xPos[xPosIndex], floorHeight, transform.position.z + 1), Time.deltaTime * speed);
-        
         // Move the character using the controller
         controller.Move(direction * Time.deltaTime);
         controller.Move(new Vector3(xPos[xPosIndex] - transform.position.x, 0, 1) * speed * Time.deltaTime);
