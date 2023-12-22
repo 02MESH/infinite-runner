@@ -13,7 +13,6 @@ public class activateCarMovement : MonoBehaviour
 
             if (car != null)
             {
-                Debug.Log("Sausage 1");
                 // // Get the script attached to the specific GameObject
                 CarMovement script = car.GetComponent<CarMovement>();
 
