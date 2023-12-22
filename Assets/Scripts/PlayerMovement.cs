@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = controller.isGrounded || IsGroundedRaycast();
-
+        Debug.Log("isGrounded is: " + isGrounded);
         if(isGrounded) {
             direction.y = 0f;
             //button to jump
@@ -178,7 +178,6 @@ public class PlayerMovement : MonoBehaviour
         {
             return true;
         }
-
         return false;
     }
 
